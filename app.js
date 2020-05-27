@@ -6,6 +6,7 @@ app.use(express.json())
 app.post('/nearest/:liketoken', function (req, res) {
 if(req.params.liketoken === process.env.Sai)
 {
+    try {
     var nearby_one =[];
     req.body.arrlocations.forEach(element => 
     {
@@ -15,6 +16,9 @@ if(req.params.liketoken === process.env.Sai)
     });
     var small = myFunction(nearby_one);
     res.status(200).send(small)
+    } catch (error) {
+        res.status(404).send(error.message)
+    }
    
 }
 else{
@@ -26,10 +30,13 @@ else{
 function myFunction(justPrices) {
     var i = 0;
     var element =justPrices[0]
-    var smallestNumber = justPrices[0].distance;
+    var smallestNumber = justPrices[0].distance.distance;
     for(i = 0; i < justPrices.length; i++) {
-        if(justPrices[i].distance < smallestNumber) {
-            smallestNumber = justPrices[i];
+        console.log(justPrices[i].distance.distance);
+        if(Number(justPrices[i].distance.distance) < Number(smallestNumber)) {
+            console.log(justPrices[i].distance.distance + " : "+smallestNumber);
+            
+            smallestNumber = justPrices[i].distance.distance;
             element = justPrices[i]
         }
     }
