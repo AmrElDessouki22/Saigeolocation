@@ -4,7 +4,7 @@ const app = express()
 app.use(express.json())
  
 app.post('/nearest/:liketoken', function (req, res) {
-if(req.params.liketoken ==='Saitoken44!!*()EGindia')
+if(req.params.liketoken === process.env.Sai)
 {
     var nearby_one =[];
     req.body.arrlocations.forEach(element => 
