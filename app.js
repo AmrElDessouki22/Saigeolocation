@@ -42,4 +42,10 @@ function myFunction(justPrices) {
     }
     return element;
 }
+app.get('/',(req,res)=>
+{
+    res.send('welcome to Sai geo location')
+
+})
+
 app.listen(process.env.PORT || 3000 )
